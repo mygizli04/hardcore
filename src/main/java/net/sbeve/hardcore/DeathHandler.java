@@ -29,6 +29,10 @@ public class DeathHandler implements Listener {
 
         Location playerLocation = player.getLocation();
 
+        while (playerLocation.getBlock().getType() == Material.LAVA) {
+            playerLocation = playerLocation.add(0, 1, 0);
+        }
+
         playerLocation.getBlock().setType(Material.PLAYER_HEAD);
 
         Skull playerSkull = (Skull)playerLocation.getBlock().getState();
