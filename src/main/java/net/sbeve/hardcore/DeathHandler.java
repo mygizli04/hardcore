@@ -2,6 +2,7 @@ package net.sbeve.hardcore;
 
 import java.util.ArrayList;
 
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,6 +16,11 @@ public class DeathHandler implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
         Player player = (Player)event.getEntity();
+
+        if (player.getGameMode() == GameMode.SPECTATOR) {
+            player.sendMessage("Literally how did you manage to die in spectator mode lmao");
+            return;
+        }
 
         Location playerLocation = player.getLocation();
 
