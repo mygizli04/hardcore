@@ -4,10 +4,13 @@ import java.util.ArrayList;
 
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Skull;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class DeathHandler implements Listener {
 
@@ -15,6 +18,8 @@ public class DeathHandler implements Listener {
     
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
+        Main main = JavaPlugin.getPlugin(Main.class);
+
         Player player = (Player)event.getEntity();
 
         if (player.getGameMode() == GameMode.SPECTATOR) {
@@ -23,6 +28,14 @@ public class DeathHandler implements Listener {
         }
 
         Location playerLocation = player.getLocation();
+
+        playerLocation.getBlock().setType(Material.PLAYER_HEAD);
+
+        Skull playerSkull = (Skull)playerLocation.getBlock().getState();
+
+        playerSkull.setOwningPlayer(main.getServer().getOfflinePlayer(player.getUniqueId()));
+
+        playerSkull.update();
 
         DeadPlayer playerData = new DeadPlayer();
 
