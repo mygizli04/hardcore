@@ -29,7 +29,7 @@ public class DeathHandler implements Listener {
 
         Location playerLocation = player.getLocation();
 
-        while (playerLocation.getBlock().getType() == Material.LAVA) {
+        while (playerLocation.getBlock().getType() != Material.AIR) {
             playerLocation = playerLocation.add(0, 1, 0);
         }
 
