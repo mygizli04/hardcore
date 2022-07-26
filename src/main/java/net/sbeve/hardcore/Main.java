@@ -13,6 +13,8 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         getLogger().info("onEnable is called!");
 
+        new Reviver();
+
         getServer().getPluginManager().registerEvents(deathHandler, this);
     }
     
