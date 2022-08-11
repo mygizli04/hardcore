@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Main extends JavaPlugin {
     DeathHandler deathHandler = new DeathHandler();
     Inviter inviter = new Inviter();
+    Tracker tracker = new Tracker();
 
     @Override
     public void onEnable() {
@@ -19,6 +20,7 @@ public class Main extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(deathHandler, this);
         getServer().getPluginManager().registerEvents(inviter, this);
+        getServer().getPluginManager().registerEvents(tracker, this);
     }
     
 }
